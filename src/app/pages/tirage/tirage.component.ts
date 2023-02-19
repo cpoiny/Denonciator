@@ -37,8 +37,10 @@ export class TirageComponent {
    // while (this.listOfStudent.length > 0) {
     const index = Math.floor(Math.random() * this.listOfStudent.length);
     // je recupere la valeur de l'index
-    console.log("liste de depart", this.listOfStudent.length);
     const nom = this.listOfStudent[index];
+    // j'exclu les absents
+    if (nom.status) {
+      // j'affiche le message selon le genre
     if (nom.gender === "Homme") {
       this.result = "Tu es le grand gagnant!";
     } else {
@@ -48,8 +50,10 @@ export class TirageComponent {
     const selection = nom.identity;
     // j'assigne a ma variable selection la valeur de l'etudiant selectionne
     this.selection = selection;
+  } else {
     //je retire le nom de la liste
-    
+    this.tirageAuSort();
+  }
    //this.listOfStudent = this.listOfStudent.splice(index, 1, nom);
    // console.log("nouvelle liste" , this.listOfStudent);
     //console.log("length", this.listOfStudent.length);
