@@ -19,7 +19,10 @@ button {
 button:hover {
     font-weight: bold;
 }
-p {
+h4 {
+    margin-bottom: 0;
+}
+.selection {
     width: 50vw;
     height: 35vh;
     background-color: white;
@@ -27,7 +30,6 @@ p {
     justify-content: center;
     align-items: center;
     margin-top: 10vh;
-  
     
 }
 .flex {

@@ -1,6 +1,13 @@
 <main class="flex column">
-    <button>🎰 Sélectionner une personne 🎰</button>
-    <!-- <p class="flex"> ---------</p> -->
-    <p class="flex"> Tu es la grande gagnante</p>
-</main>
+    <button (click)="tirageAuSort()">🎰 Sélectionner une personne 🎰</button>
 
+    <div class="flex column selection">
+        <h4>{{selection}} 🌸</h4>
+        <!-- <ng-container *ngFor="let student of listOfStudent">
+        <p *ngIf="student.status && student.gender === 'Homme'"><b>Tu es le gagnant !!!</b></p>
+        <p *ngIf="student.status && student.gender === 'Femme'"><b>Tu es la gagnante !!!</b></p>
+        </ng-container> -->
+
+    </div>
+
+</main>
