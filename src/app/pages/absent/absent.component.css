@@ -7,14 +7,40 @@ main {
     justify-content: space-around;
     align-items: center;
 }
-
 button {
+    background-color: #d9d9d9;
+    color : black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+    margin-left:3px;
+}
+label {
+    margin: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+select {
+    border: none;
+    background-color: white;
+    padding: 10px 0 10px 0;
+    font-size:17px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+.ajouter {
     background-color: #CE0033;
     color : white;
     border-radius: 25px;
-    padding: 15px 50px;
+    width: 150px;
+    height: 50px;
     border: none;
     cursor: pointer;
+    margin-top:20px;
 }
 .absences {
     border-left: #d9d9d9 solid 3px;
@@ -23,7 +49,15 @@ button {
 .flex {
     display: flex;
 }
-
 .column {
     flex-direction: column;
+}
+.present{
+    background-color: white;
+    width: 30vw;
+    padding:20px;
+}
+.present li{
+list-style: none;
+line-height: 25px;
 }

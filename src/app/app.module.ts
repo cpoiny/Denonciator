@@ -7,6 +7,7 @@ import { AbsentComponent } from './pages/absent/absent.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
+import { TirageComponent } from './pages/tirage/tirage.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HomeComponent } from './pages/home/home.component';
     AbsentComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    TirageComponent
   ],
   imports: [
     BrowserModule,

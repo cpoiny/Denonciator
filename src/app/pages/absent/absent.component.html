@@ -1,28 +1,50 @@
 <main class="flex">
-   
 
-    <div class="ajout">
-        <p>Ajouter un.e absent.e </p>
+    <!-- Liste des présents -->
+    <div class="flex column">
+        <label for="student-selection">Ajouter un.e absent.e</label>
+        <div class="present">
+        <select name="student" id="student-select">
 
-        <ul>Selectionner une personne: 
-            <li>personne 1</li>
-            <li>personne 2</li>
-            <li>personne 3</li>
-            <li>personne 4</li>
-        </ul>
-    
-    
-        <button>Ajouter</button>
+            <option value=""><b>Selectionner une personne</b></option>
+            <ng-container *ngFor="let student of listOfStudent">
+                <option *ngIf="student.status">{{student.identity}}
+                </option>
+
+            </ng-container>
+
+        </select>
     </div>
+        <button class="ajouter" >Ajouter</button>
+
+    </div>
+
+
 
     <div class="absences">
-        <ul> Liste des absents
-            <li>Personne 1</li>
+        <!-- Liste des absents masculins -->
+        <ul> <b>Liste des absents</b>
+            <br /><br>
+            <ng-container *ngFor="let student of listOfStudent">
+                <li *ngIf="!student.status && student.gender === 'Homme'"><b>{{student.identity}}</b>
+                    <button><b>X</b></button>
+                </li>
+
+            </ng-container>
+            <br /><br><br /><br>
         </ul>
 
-        <ul> Liste des absentes
-            <li>Personne 2</li>
+        <!-- Listes des absents feminims -->
+        <ul> <b>Liste des absentes</b>
+            <br /><br>
+            <ng-container *ngFor="let student of listOfStudent">
+                <li *ngIf="!student.status && student.gender === 'Femme'"><b>{{student.identity}}</b>
+                    <button><b>X</b></button>
+                </li>
+
+            </ng-container>
+
         </ul>
     </div>
-  
+
 </main>
