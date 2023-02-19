@@ -1,13 +1,13 @@
 main {
-    margin :0;
+    margin : 0;
     padding: 0;
     background-color: #F0F0F0;
     height: 100vh;
     width: 100vw;
-    justify-content: space-around;
+    display : flex;
+    justify-content: center;
     align-items: center;
 }
-
 button {
     background-color: #CE0033;
     color : white;
@@ -16,23 +16,23 @@ button {
     border: none;
     cursor: pointer;
 }
-.supprimer {
-    background-color: #d9d9d9;
-    color : black;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    border: none;
-    cursor: pointer;
+button:hover {
+    font-weight: bold;
 }
-.absences {
-    border-left: #d9d9d9 solid 3px;
-    padding: 0 50px;
+p {
+    width: 50vw;
+    height: 35vh;
+    background-color: white;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+  
+    
 }
 .flex {
     display: flex;
 }
-
 .column {
     flex-direction: column;
 }

@@ -1,28 +1,41 @@
 <main class="flex">
-   
+
 
     <div class="ajout">
         <p>Ajouter un.e absent.e </p>
 
-        <ul>Selectionner une personne: 
+        <ul>Selectionner une personne:
             <li>personne 1</li>
             <li>personne 2</li>
             <li>personne 3</li>
             <li>personne 4</li>
         </ul>
-    
-    
+
+
         <button>Ajouter</button>
     </div>
 
     <div class="absences">
-        <ul> Liste des absents
-            <li>Personne 1</li>
-        </ul>
+        <ul> <b>Liste des absents</b>
+            <br/>
+            <ng-container *ngFor="let student of listOfStudent">
+                <li *ngIf="!student.status && student.gender === 'Homme'">{{student.identity}}
+                    <button class="supprimer">X</button>
+                </li>
 
-        <ul> Liste des absentes
-            <li>Personne 2</li>
+            </ng-container>
+
+        </ul>
+        <ul> <b>Liste des absentes</b>
+        <br>
+            <ng-container *ngFor="let student of listOfStudent">
+                <li *ngIf="!student.status && student.gender === 'Femme'">{{student.identity}}
+                    <button class="supprimer">X</button>
+                </li>
+
+            </ng-container>
+
         </ul>
     </div>
-  
+
 </main>
