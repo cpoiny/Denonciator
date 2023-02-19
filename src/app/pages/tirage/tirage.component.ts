@@ -54,9 +54,9 @@ export class TirageComponent {
     //je retire le nom de la liste
     this.tirageAuSort();
   }
-   //this.listOfStudent = this.listOfStudent.splice(index, 1, nom);
+   //this.listOfStudent.splice(index, 1, nom);
    // console.log("nouvelle liste" , this.listOfStudent);
-    //console.log("length", this.listOfStudent.length);
+    //console.log("length", this.listOfStudent);
   //  }
   }
 }
