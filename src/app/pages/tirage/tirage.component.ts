@@ -30,6 +30,10 @@ export class TirageComponent {
   selection!: string;
   result!: string;
 
+
+  ngOnInit(){
+    this.tirageAuSort();
+  }
   // Créer une fonction qui permet de choisir aléatoirement
   tirageAuSort() {
 
