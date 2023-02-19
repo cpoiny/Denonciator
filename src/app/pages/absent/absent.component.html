@@ -1,29 +1,32 @@
 <main class="flex">
 
+    <!-- Liste des présents -->
+    <div class="flex column">
+        <label for="student-selection">Ajouter un.e absent.e</label>
+        <div class="present">
+        <select name="student" id="student-select">
 
-    <div>
-        <!-- Liste des présents -->
-        <h3>Ajouter un.e absent.e </h3>
-
-        <ul class="present"><b>Selectionner une personne</b>
-            <br><br>
+            <option value=""><b>Selectionner une personne</b></option>
             <ng-container *ngFor="let student of listOfStudent">
-                <li *ngIf="student.status">{{student.identity}}
-                </li>
+                <option *ngIf="student.status">{{student.identity}}
+                </option>
 
             </ng-container>
 
-        </ul>
-        <button class="ajouter">Ajouter</button>
+        </select>
+    </div>
+        <button class="ajouter" >Ajouter</button>
 
     </div>
+
+
 
     <div class="absences">
         <!-- Liste des absents masculins -->
         <ul> <b>Liste des absents</b>
             <br /><br>
             <ng-container *ngFor="let student of listOfStudent">
-                <li *ngIf="!student.status && student.gender === 'Homme'">{{student.identity}}
+                <li *ngIf="!student.status && student.gender === 'Homme'"><b>{{student.identity}}</b>
                     <button><b>X</b></button>
                 </li>
 
@@ -35,7 +38,7 @@
         <ul> <b>Liste des absentes</b>
             <br /><br>
             <ng-container *ngFor="let student of listOfStudent">
-                <li *ngIf="!student.status && student.gender === 'Femme'">{{student.identity}}
+                <li *ngIf="!student.status && student.gender === 'Femme'"><b>{{student.identity}}</b>
                     <button><b>X</b></button>
                 </li>
 
