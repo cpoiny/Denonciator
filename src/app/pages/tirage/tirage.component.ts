@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Student, STUDENTSLIST } from 'src/app/mocks/students.mock';
-import { RandomService } from 'src/app/services/random.service';
+//import { RandomService } from 'src/app/services/random.service';
 
 @Component({
   selector: 'app-tirage',
@@ -9,36 +9,54 @@ import { RandomService } from 'src/app/services/random.service';
 })
 export class TirageComponent {
 
-//   // Liste des etudiants dont le statut est présent à créer
-//   listOfStudentsPresent! : Student[];
-//   listTest! : Student [];
+  //   // Liste des etudiants dont le statut est présent à créer
+  //   listOfStudentsPresent! : Student[];
+  //   listTest! : Student [];
 
-//   // Etudiant à créer
-//  // student : Student = new Student: any();
+  //   // Etudiant à créer
+  //  // student : Student = new Student: any();
 
-// constructor(private service : RandomService) {}
+  // constructor(private service : RandomService) {}
 
-// //Ajout d'un étudiant dans le tableau
-// addStudent() {
-//  // this.service.createStudent(this.student);
-//   //this.student = new Student();
-// }
+  // //Ajout d'un étudiant dans le tableau
+  // addStudent() {
+  //  // this.service.createStudent(this.student);
+  //   //this.student = new Student();
+  // }
 
 
-listOfStudent: Student[] = STUDENTSLIST;
-listeDesEtudiants : string[] = ['Fama', 'Cynthia', 'Anne', 'Julie'];
+  listOfStudent: Student[] = STUDENTSLIST;
+   
+  selection!: string;
+  result!: string;
 
-// créer une liste qui recupére les selectionné
-listeDesSelectionné : string[] = [];
-nom! : string;
-selection! :string;
+  // Créer une fonction qui permet de choisir aléatoirement
+  tirageAuSort() {
 
-// Créer une fonction qui permet de choisir aléatoirement
-tirageAuSort() {
-  const choix = Math.floor(Math.random()*this.listOfStudent.length);
-  const nom = this.listOfStudent[choix];
-  const selection = nom.identity;
- console.log(nom);
- this.selection = selection;
-}
+    // je recupere un index
+   // while (this.listOfStudent.length > 0) {
+    const index = Math.floor(Math.random() * this.listOfStudent.length);
+    // je recupere la valeur de l'index
+    const nom = this.listOfStudent[index];
+    // j'exclu les absents
+    if (nom.status) {
+      // j'affiche le message selon le genre
+    if (nom.gender === "Homme") {
+      this.result = "Tu es le grand gagnant!";
+    } else {
+      this.result = "Tu es la grande gagnante!";
+    }
+    // je recupere l'attribut identity de l'etudiant
+    const selection = nom.identity;
+    // j'assigne a ma variable selection la valeur de l'etudiant selectionne
+    this.selection = selection;
+  } else {
+    //je retire le nom de la liste
+    this.tirageAuSort();
+  }
+   //this.listOfStudent.splice(index, 1, nom);
+   // console.log("nouvelle liste" , this.listOfStudent);
+    //console.log("length", this.listOfStudent);
+  //  }
+  }
 }
