@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Student, STUDENTSLIST } from 'src/app/mocks/students.mock';
+import { StudentsService } from 'src/app/services/students.service';
 //import { RandomService } from 'src/app/services/random.service';
 
 @Component({
@@ -9,33 +10,31 @@ import { Student, STUDENTSLIST } from 'src/app/mocks/students.mock';
 })
 export class TirageComponent {
 
-  //   // Liste des etudiants dont le statut est présent à créer
-  //   listOfStudentsPresent! : Student[];
-  //   listTest! : Student [];
+  listOfStudent: Student[] = [];
 
-  //   // Etudiant à créer
-  //  // student : Student = new Student: any();
-
-  // constructor(private service : RandomService) {}
-
-  // //Ajout d'un étudiant dans le tableau
-  // addStudent() {
-  //  // this.service.createStudent(this.student);
-  //   //this.student = new Student();
-  // }
-
-
-  listOfStudent: Student[] = STUDENTSLIST;
 
   selection!: string;
   result!: string;
 
+  constructor(
+    public studentsService: StudentsService
+  ) { }
 
   ngOnInit() {
+    this.getStudent();
     this.tirageAuSort();
+   
+
+
   }
-  // Créer une fonction qui permet de choisir aléatoirement
+
+
+  getStudent(): void {
+    this.listOfStudent = this.studentsService.getStudent();
+  }
+  //Créer une fonction qui permet de choisir aléatoirement
   tirageAuSort() {
+
 
     // je recupere un index
     // while (this.listOfStudent.length > 0) {
@@ -54,10 +53,14 @@ export class TirageComponent {
       const selection = nom.identity;
       // j'assigne a ma variable selection la valeur de l'etudiant selectionne
       this.selection = selection;
-    } else {
-      //je retire le nom de la liste
-      this.tirageAuSort();
     }
-    
+    // } else {
+    //   //je retire le nom de la liste
+    //   this.tirageAuSort();
+    // }
+
   }
+
+
+ 
 }
