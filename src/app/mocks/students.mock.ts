@@ -13,14 +13,14 @@ export const STUDENTSLIST :Student[]=[
         identity: "Fahd",
         gender: 'Homme',
         status: true,
-        canBeSelected: true
+        canBeSelected: false
     },
     {
         id:2,
         identity: "Jerome",
         gender: 'Homme',
-        status: true,
-        canBeSelected: true
+        status: false,
+        canBeSelected: false
     },
     {
         id:3,
