@@ -19,7 +19,7 @@ export const STUDENTSLIST :Student[]=[
         id:2,
         identity: "Jerome",
         gender: 'Homme',
-        status: true,
+        status: false,
         canBeSelected: true
     },
     {

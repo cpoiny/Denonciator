@@ -11,10 +11,8 @@ export class AbsentComponent {
 
   manAbsent: Student[] = [];
   womanAbsent: Student[] = [];
-
   onlyPresent: Student[] = [];
-  onlyAbsent: Student[] = [];
-
+ 
   constructor(
     public studentsService: StudentsService
   ) { }
@@ -22,7 +20,6 @@ export class AbsentComponent {
   ngOnInit() {
 
     this.checkPresent();
-    this.checkAbsent();
     this.absentByGender();
 
   }
@@ -35,16 +32,16 @@ export class AbsentComponent {
   }
 
   //function pour filtrer que les absents 
-  checkAbsent() {
-    const absent = STUDENTSLIST.filter(student => student.status === false);
-    this.onlyAbsent = absent;
-    console.log("absence totale", absent);
-  }
+  // checkAbsent() {
+  //   const absent = STUDENTSLIST.filter(student => student.status === false);
+  //   this.onlyAbsent = absent;
+  //   console.log("absence totale", absent);
+  // }
 
   absentByGender() {
-    const manAbsent = this.onlyAbsent.filter(student => student.gender === "Homme");
+    const manAbsent = STUDENTSLIST.filter(student => student.gender === "Homme" && student.status === false);
     this.manAbsent = manAbsent;
-    const womanAbsent = this.onlyAbsent.filter(student => student.gender === "Femme");
+    const womanAbsent = STUDENTSLIST.filter(student => student.gender === "Femme" && student.status === false);
     this.womanAbsent = womanAbsent;
   }
 
@@ -58,22 +55,25 @@ export class AbsentComponent {
 
 
 
-  remove(id: number): void {
-    this.onlyAbsent.forEach((student) => {
+  removeGirl(id: number): void {
+    this.womanAbsent.forEach((student) => {
       if (student.id === id) {
-        if (student.gender === "Femme") {
-          student.status = !student.status;
-          this.womanAbsent.pop();
-          this.onlyPresent.push(student);
-        } else {
-          student.status = !student.status;
-          this.manAbsent.pop();
-          this.onlyPresent.push(student);
-        }
-        
-
+        student.status = !student.status;
+        const index = this.womanAbsent.findIndex(student => student.id === id);
+        this.onlyPresent.push(student);
+        this.womanAbsent.splice(1, index);
       }
-      console.log("absence totale", this.onlyAbsent);
+    });
+  }
+
+  removeMan(id: number): void {
+    this.manAbsent.forEach((student) => {
+      if (student.id === id) {
+        student.status = !student.status;
+        const index = this.manAbsent.findIndex(student => student.id === id);
+        this.onlyPresent.push(student);
+        this.manAbsent.splice(1, index);
+      }
     });
   }
 }

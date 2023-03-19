@@ -24,12 +24,12 @@
 
     <div class="absences">
         <!-- Liste des absents masculins -->
-        <h4 *ngIf="manAbsent.length > 0"><b>Liste des absents</b></h4>
+        <h4 *ngIf="manAbsent.length > 1"><b>Liste des absents</b></h4>
         <ul>
             <br /><br>
-            <ng-container *ngFor="let student of onlyAbsent">
-                <li *ngIf="!student.status && student.gender === 'Homme'"><b>{{student.identity}}</b>
-                    <button (click)="remove(student.id)"><b>X</b></button>
+            <ng-container *ngFor="let student of manAbsent">
+                <li *ngIf="!student.status"><b>{{student.identity}}</b>
+                    <button (click)="removeMan(student.id)"><b>X</b></button>
                 </li>
 
             </ng-container>
@@ -37,12 +37,12 @@
         </ul>
 
         <!-- Listes des absents feminims -->
-        <h4 *ngIf="womanAbsent.length > 0"><b>Liste des absents</b></h4>
+        <h4 *ngIf="womanAbsent.length > 1"><b>Liste des absents</b></h4>
         <ul>
             <br /><br>
-            <ng-container *ngFor="let student of onlyAbsent">
-                <li *ngIf="!student.status && student.gender === 'Femme'"><b>{{student.identity}}</b>
-                    <button (click)="remove(student.id)"><b>X</b></button>
+            <ng-container *ngFor="let student of womanAbsent">
+                <li *ngIf="!student.status"><b>{{student.identity}}</b>
+                    <button (click)="removeGirl(student.id)"><b>X</b></button>
                 </li>
 
             </ng-container>
