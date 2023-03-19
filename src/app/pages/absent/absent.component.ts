@@ -12,7 +12,9 @@ export class AbsentComponent {
   manAbsent: Student[] = [];
   womanAbsent: Student[] = [];
   onlyPresent: Student[] = [];
- 
+  selectedStudent!: Student;
+  student!: Student;
+
   constructor(
     public studentsService: StudentsService
   ) { }
@@ -21,6 +23,7 @@ export class AbsentComponent {
 
     this.checkPresent();
     this.absentByGender();
+
 
   }
 
@@ -31,12 +34,7 @@ export class AbsentComponent {
     console.log(present);
   }
 
-  //function pour filtrer que les absents 
-  // checkAbsent() {
-  //   const absent = STUDENTSLIST.filter(student => student.status === false);
-  //   this.onlyAbsent = absent;
-  //   console.log("absence totale", absent);
-  // }
+
 
   absentByGender() {
     const manAbsent = STUDENTSLIST.filter(student => student.gender === "Homme" && student.status === false);
@@ -46,25 +44,31 @@ export class AbsentComponent {
   }
 
 
-  // function to add an absent
-    add(studentId:number): void {
-      this.onlyPresent.forEach((student) => {
-        if (student.id === studentId) {
-          student.status = !student.status;
-          
-          const index = this.onlyPresent.findIndex(student => student.id === studentId);
-          this.onlyPresent.splice(1, index);
-          if (student.gender === "Homme"){
-            this.manAbsent.push(student);
-          }else {
-            this.womanAbsent.push(student)
-          }
-          
-        }
-      });
+  add() {
+
+    const index = this.onlyPresent.indexOf(this.selectedStudent!);
+    console.log(index, "index");
+    console.log("select", this.selectedStudent);
+    console.log("identity", this.selectedStudent.identity);
+    if (this.onlyPresent.length > 0) {
+
+
+      if (this.selectedStudent.identity === "Thomas" || "Erdal" || "Jerome" || "Fahd") {
+        this.manAbsent.push(this.selectedStudent);
+
+      } else {
+        this.womanAbsent.push(this.selectedStudent);
+      }
+      this.onlyPresent.splice(this.onlyPresent.indexOf(this.selectedStudent), 1);
+    }
 
 
   }
+
+
+
+
+
 
 
 
