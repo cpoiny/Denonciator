@@ -74,7 +74,7 @@ export class AbsentComponent {
         student.status = !student.status;
         const index = this.womanAbsent.findIndex(student => student.id === id);
         this.onlyPresent.push(student);
-        this.womanAbsent.splice(1, index);
+        this.womanAbsent.splice(index, 1);
       }
     });
   }
@@ -85,7 +85,7 @@ export class AbsentComponent {
         student.status = !student.status;
         const index = this.manAbsent.findIndex(student => student.id === id);
         this.onlyPresent.push(student);
-        this.manAbsent.splice(1, index);
+        this.manAbsent.splice(index, 1);
       }
     });
   }
