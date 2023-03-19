@@ -47,8 +47,21 @@ export class AbsentComponent {
 
 
   // function to add an absent
-  add() {
-
+    add(studentId:number): void {
+      this.onlyPresent.forEach((student) => {
+        if (student.id === studentId) {
+          student.status = !student.status;
+          
+          const index = this.onlyPresent.findIndex(student => student.id === studentId);
+          this.onlyPresent.splice(1, index);
+          if (student.gender === "Homme"){
+            this.manAbsent.push(student);
+          }else {
+            this.womanAbsent.push(student)
+          }
+          
+        }
+      });
 
 
   }
