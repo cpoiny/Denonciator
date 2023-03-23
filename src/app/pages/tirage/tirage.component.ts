@@ -33,23 +33,30 @@ export class TirageComponent {
     const listCanBeSelected = this.listOfStudent.filter(
       (student) => student.canBeSelected === true && student.status);
     this.listCanBeSelected = listCanBeSelected;
-    if(this.listCanBeSelected.length <= 0){
+    //si la liste est vide alors on la recharge avec la fonction reset qui va remettre tous les students a true pour canBeSelected
+    if (this.listCanBeSelected.length <= 0) {
       this.resetStudent();
-    } 
+    }
   }
 
 
   //function pour reinitialiser ma liste de student avec tous les étudiants présents et le selecteur canBeSelected à true
   resetStudent(): void {
+    //j'assigne a ma propriété listCanBeSelected un nouveau tableau qui est filtré sur la listofSutdent dont le status est présent et qui va parcourir chaque student et modifier leur canBeSelected à true
     this.listCanBeSelected = this.listOfStudent
+      //methode filter sur les student.status a true
       .filter((s) => s.status)
+      //methode map sur les student
       .map((student) => {
+        //renvoit un tableau de student
         return {
+          //parcourt tous les students
           ...student,
+          //change a true le canBeSelected
           canBeSelected: true,
         };
       });
-      console.log("liste ok", this.listCanBeSelected);
+
   }
 
 
@@ -85,8 +92,10 @@ export class TirageComponent {
       this.selection = selection;
 
     } else {
+      //je recupéere une nouvelle liste de student prêt à être sélectionné
       this.getStudent();
-     this.tirageAuSort();
+      //je fais une récursivité pour éviter un clip dans le vide quand je clic
+      this.tirageAuSort();
     }
   }
 }
