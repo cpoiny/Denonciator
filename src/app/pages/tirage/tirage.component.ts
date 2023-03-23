@@ -12,7 +12,7 @@ export class TirageComponent {
 
   listOfStudent: Student[] = [];
   listCanBeSelected: Student[] = [];
-  listEnCours!: Student[] ;
+  listEnCours!: Student[];
 
   selection!: string;
   result!: string;
@@ -24,14 +24,34 @@ export class TirageComponent {
   ngOnInit() {
     this.getStudent();
     this.tirageAuSort();
+    this.resetStudent();
   }
 
 
   getStudent(): void {
     this.listOfStudent = this.studentsService.getStudent();
-    const listCanBeSelected = this.listOfStudent.filter(student => student.canBeSelected === true && student.status);
+    const listCanBeSelected = this.listOfStudent.filter(
+      (student) => student.canBeSelected === true && student.status);
     this.listCanBeSelected = listCanBeSelected;
+    if(this.listCanBeSelected.length <= 0){
+      this.resetStudent();
+    } 
   }
+
+
+  //function pour reinitialiser ma liste de student avec tous les étudiants présents et le selecteur canBeSelected à true
+  resetStudent(): void {
+    this.listCanBeSelected = this.listOfStudent
+      .filter((s) => s.status)
+      .map((student) => {
+        return {
+          ...student,
+          canBeSelected: true,
+        };
+      });
+      console.log("liste ok", this.listCanBeSelected);
+  }
+
 
 
   //Créer une fonction qui permet de choisir aléatoirement
@@ -51,13 +71,9 @@ export class TirageComponent {
         student.canBeSelected = false;
         // console.log("boolean apres", student.canBeSelected);
       }
-      // const supprimer = this.listEnCours.findIndex(student => student.id === index);
-      // console.log("index a supprimer", index);
-      // console.log("list avant suppression", listEnCours.length);
+
       listEnCours.splice(index, 1);
-      // console.log("list apres suppression", listEnCours.length);
-      //console.log("length apres selection", this.listEnCours.length);
-      // j'affiche le message selon le genre
+
       if (student.gender === "Homme") {
         this.result = "Tu es le grand gagnant!";
       } else {
@@ -67,16 +83,12 @@ export class TirageComponent {
       const selection = student.identity;
       // j'assigne a ma variable selection la valeur de l'etudiant selectionne
       this.selection = selection;
-      // console.log("gagnant", selection);
-      //   } else {
-      // listEnCours = this.listCanBeSelected;
-      // }
-    } 
+
+    } else {
+      this.getStudent();
+     this.tirageAuSort();
+    }
   }
 }
 
 
-//const index = this.womanAbsent.findIndex(student => student.id === id);
-//this.womanAbsent.splice(1, index);
-//
-//
