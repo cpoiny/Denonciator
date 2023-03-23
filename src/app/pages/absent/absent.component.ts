@@ -12,7 +12,7 @@ export class AbsentComponent {
   manAbsent: Student[] = [];
   womanAbsent: Student[] = [];
   onlyPresent: Student[] = [];
-  selectedStudent!: Student;
+  selectedStudent!: string;
   student!: Student;
 
   constructor(
@@ -46,20 +46,27 @@ export class AbsentComponent {
 
   add() {
 
-    const index = this.onlyPresent.indexOf(this.selectedStudent!);
-    console.log(index, "index");
-    console.log("select", this.selectedStudent);
-    console.log("identity", this.selectedStudent.identity);
-    if (this.onlyPresent.length > 0) {
+    //je récupère l'index du student dont le nom est le meme que celui choisi dans le menu déroulant
+    const index = this.onlyPresent.findIndex((student) => student.identity === this.selectedStudent!);
 
+    //si la liste des présent existe et que l'index de l'étudiant n'est pas -1
+    if (this.onlyPresent.length > 0 && index != -1) {
+      //je cherche le student dans ma liste de student
+      const student = this.onlyPresent.find((student) => student.identity === this.selectedStudent!);
+      //je dois absolumenta voir un student sinon je ressors
+      if (!student) return;
+      //je change le status de mon student en false pour pouvoir le voir dans ma liste des absents
+      student.status = false;
+      //si le student est un homme push dans catégorie homme
+      if (student.gender === "Homme") {
 
-      if (this.selectedStudent.identity === "Thomas" || "Erdal" || "Jerome" || "Fahd") {
-        this.manAbsent.push(this.selectedStudent);
+        this.manAbsent.push(student);
 
       } else {
-        this.womanAbsent.push(this.selectedStudent);
+        this.womanAbsent.push(student);
       }
-      this.onlyPresent.splice(this.onlyPresent.indexOf(this.selectedStudent), 1);
+      //je retire le student de mon tableau des présents
+      this.onlyPresent.splice(this.onlyPresent.indexOf(student), 1);
     }
 
 
