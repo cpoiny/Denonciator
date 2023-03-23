@@ -12,7 +12,7 @@ export class AbsentComponent {
   manAbsent: Student[] = [];
   womanAbsent: Student[] = [];
   onlyPresent: Student[] = [];
-  selectedStudent!: Student;
+  selectedStudent!: string;
   student!: Student;
 
   constructor(
@@ -46,20 +46,24 @@ export class AbsentComponent {
 
   add() {
 
-    const index = this.onlyPresent.indexOf(this.selectedStudent!);
-    console.log(index, "index");
-    console.log("select", this.selectedStudent);
-    console.log("identity", this.selectedStudent.identity);
-    if (this.onlyPresent.length > 0) {
+    const index = this.onlyPresent.findIndex((student) => student.identity === this.selectedStudent!);
 
-
-      if (this.selectedStudent.identity === "Thomas" || "Erdal" || "Jerome" || "Fahd") {
-        this.manAbsent.push(this.selectedStudent);
+    if (this.onlyPresent.length > 0 && index != -1) {
+      const student = this.onlyPresent.find((student) => student.identity === this.selectedStudent!);
+      if (!student) return;
+      console.log("student", student);
+      console.log("nom select", this.selectedStudent);
+      console.log("avant", student.status);
+            student.status = false;
+           console.log("apres", student.status);
+      if (student.gender === "Homme") {
+        console.log("ok boy");
+        this.manAbsent.push(student);
 
       } else {
-        this.womanAbsent.push(this.selectedStudent);
+        this.womanAbsent.push(student);
       }
-      this.onlyPresent.splice(this.onlyPresent.indexOf(this.selectedStudent), 1);
+      this.onlyPresent.splice(this.onlyPresent.indexOf(student), 1);
     }
 
 
